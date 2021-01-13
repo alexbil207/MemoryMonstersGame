@@ -1,0 +1,93 @@
+body{
+    margin: 0;
+    padding: 0;
+
+}
+
+/* LOGO ENTRY */
+.intro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+    border-bottom: 10px solid darkcyan;
+    color: darkcyan;
+    font-size: 2em;
+}
+
+
+/* Player Section */
+.userSection{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+/* Timer Section */
+
+.userTimer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+}
+.timer{
+    margin: 10px;
+}
+
+/* Cards Section */
+#game{
+    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+;}
+.card {
+    background-color: pink;
+    height: 165px;
+    width: 165px;    
+    margin: 5px;
+
+}
+.card img {
+    position: absolute;
+}
+
+.flipped .back {
+    display: none;
+}
+.restartButton{
+    height: 50px;
+    width: 100px;
+}
+/* Winner Section */
+#winner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+.winnerTable{
+    background-color: rgb(243, 240, 236);
+    border: 2px solid black;
+    padding: 20px 150px 0px 20px;
+}
+
+@media (max-width: 700px){
+.userSection{
+    font-size: 1.5rem;
+}
+.userChange{
+    font-size: 1.5rem;
+
+}
+.startTimer{
+    font-size: 2.5rem; 
+}
+.timer{
+    font-size: 3.5rem; 
+}
+}
