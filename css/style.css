@@ -91,6 +91,9 @@ body{
     font-size: 3.5rem; 
 }
 .restartButton{
-    font-size: 2.5rem;
+    height: 100px;
+    width: 150px;
+    font-size: 2rem; 
+
 }
 }
