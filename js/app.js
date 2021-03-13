@@ -4,12 +4,12 @@ let flippedCouplesCount = 0;
 const TOTAL_COUPLES_COUNT = 8;
 let isProcessing = true;
 let isCounting = true;
-let interval = true;
+let isInterval = true;
 
 
 
 // ############### define cards on screen ####################
-const game = document.querySelector("#game");
+const elGame = document.querySelector("#game");
 let cardArr = createCardArr();
 // creating list between 1 - 8 for the cards .. everytime in different order
 function createCardArr(){
@@ -39,25 +39,24 @@ function defineCardsOnScreen(cardArr){
         backImg.setAttribute("src",`img/cards/back.png`);
         div.appendChild(cardImg);
         div.appendChild(backImg);
-        game.appendChild(div);
+        elGame.appendChild(div);
     };
 }
-function firstLineChangeCards(cardArr){
-    const cardImg = document.querySelectorAll('.cardImg');
-    const div = document.querySelectorAll('.card');
 
+function firstLineChangeCards(cardArr){
     for (let i = 0 ; i < 8 ; i++){
-        div[i].setAttribute("data-card",`${cardArr[i]}.png`);
+        const cardImg = document.querySelectorAll('.cardImg');
+        const elDiv = document.querySelectorAll('.card');
+        elDiv[i].setAttribute("data-card",`${cardArr[i]}.png`);
         cardImg[i].setAttribute("src",`img/cards/${cardArr[i]}.png`);
     }
 };
 function secondLineChangeCards(cardArr){
-    const cardImg = document.querySelectorAll('.cardImg');
-    const div = document.querySelectorAll('.card');
-
     let j = 0;
     for (let i = 8 ; i < 16 ; i++){
-        div[i].setAttribute("data-card",`${cardArr[j]}.png`);
+        const cardImg = document.querySelectorAll('.cardImg');
+        const elDiv = document.querySelectorAll('.card');
+        elDiv[i].setAttribute("data-card",`${cardArr[j]}.png`);
         cardImg[i].setAttribute("src",`img/cards/${cardArr[j]}.png`);
         j++;
     }
@@ -88,10 +87,7 @@ let audioRight = new Audio('sound/right.mp3');
 
 // This function is called whenever the user click a card
 function cardClicked(elCard) {
-    if (seconds == 0 && tenthSeconds == 0 && minutes == 0) {
-        alert("Start the Timer");
-        return;
-    }
+    startTimer();
     if (isProcessing == false) {
         return;
     }
@@ -136,7 +132,7 @@ function cardClicked(elCard) {
                 //stop clock
                 saveScore(seconds, tenthSeconds, minutes, tenthMinutes);
                 //Appending restart button after winning
-                game.appendChild(restartButton)
+                elGame.appendChild(restartButton)
                 let restart = document.querySelector(".restartButton");
                 //event callback function
                 restart.addEventListener("click", () =>{
@@ -151,7 +147,7 @@ function cardClicked(elCard) {
                     cardArr = createCardArr();
                     secondLineChangeCards(cardArr);
                     // changeCards(cardArr);
-                    game.removeChild(restartButton);//remove button
+                    elGame.removeChild(restartButton);//remove button
                     clockreset();// timer restart
                 });
             }
@@ -172,11 +168,9 @@ let houres = 0;
 let tenthHoures = 0;
 
 const timer = document.querySelector(".timer");
-const start = document.querySelector(".startTimer");
 let multipleClickProtection = false;
 let stopIntervalCounting = false;
 
-start.addEventListener("click", startTimer);
 
 function startTimer(){
     if (multipleClickProtection == true){
@@ -184,10 +178,10 @@ function startTimer(){
     }
     multipleClickProtection = true;
     stopIntervalCounting = false;
-    if (interval == true){
+    if (isInterval == true){
         setInterval(timerOn, 1000)
     }
-    interval = false;
+    isInterval = false;
 };
 function timerOn(){
     if (stopIntervalCounting == true){
@@ -251,5 +245,6 @@ function updateTableBest(){
     let bestPlayerScore = document.querySelector(".bestScore");
     bestName.innerHTML = `Best Player: ${userName}`;
     bestPlayerScore.innerHTML = `Best Score: ${bestScore}s`;
+    
 }
 // ###############################################
